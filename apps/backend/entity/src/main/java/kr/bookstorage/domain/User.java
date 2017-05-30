@@ -2,6 +2,7 @@ package kr.bookstorage.domain;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -19,22 +20,23 @@ public class User implements Serializable {
 	private static final long serialVersionUID = -5940694792721955482L;
 
 	@Id
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@Column(name = "unique_id")
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
+	@Type(type="uuid-char")
+	@Column(name = "UNIQUE_ID")
 	private UUID uniqueId;
 
-	@Column(name = "email", length = 150, unique = true)
+	@Column(name = "EMAIL", length = 150, unique = true)
 	@Email
 	private String email;
 
-	@Column(name = "password", nullable = false)
+	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 
-	@Column(name = "enabled", nullable = false)
+	@Column(name = "ENABLED", nullable = false)
 	private boolean enabled;
 
-	@Column(name = "name", nullable = false)
+	@Column(name = "NAME", nullable = false)
 	private String name;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.PERSIST)

@@ -18,7 +18,7 @@ const LOGOUT_SUCCESS = 'auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'auth/LOGOUT_FAIL';
 
 const initialState = {
-    loaded: false
+    loaded: false,
 }
 
 export default function reducer(state = initialState, action = {}) {

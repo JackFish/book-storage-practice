@@ -9,7 +9,7 @@ import {push as pushState} from 'react-router-redux';
 
 import {authToken, load, login} from 'redux/reducers/auth';
 
-import LoginValidation from "./LoginValidation";
+import LoginValidation from "./Validate/LoginValidation";
 
 @reduxForm(
     {

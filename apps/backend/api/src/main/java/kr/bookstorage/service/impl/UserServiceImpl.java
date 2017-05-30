@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
             result.setName(user.getName());
         }
         if(!ObjectUtils.isEmpty(user.getPassword())){
-            result.setPassword(passwordEncoder.encode(result.getPassword()));
+            result.setPassword(passwordEncoder.encode(user.getPassword()));
         }
     }
 

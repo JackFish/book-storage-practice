@@ -3,8 +3,10 @@ import {IndexRoute, Route} from 'react-router';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/reducers/auth';
 import {
 	Root,
-	Home,
     Login,
+    Join,
+	Profile,
+    Home,
 	BookRecord,
 	BookRecordList,
 	BookRecordDetail,
@@ -50,6 +52,12 @@ export default (store) => {
 			<IndexRoute component={Home}/>
 
 			<Route path="login" component={Login}>
+			</Route>
+
+			<Route path="join" component={Join}>
+			</Route>
+
+			<Route path="profile" component={Profile}>
 			</Route>
 
 			<Route path="bookRecord" component={BookRecord}>

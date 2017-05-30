@@ -52,7 +52,7 @@ export default class Top extends Component {
                         {
                             user ?
 								<Navbar.Text>
-                                    {user.userName}&nbsp;
+                                    {user.name}&nbsp;
 									<Navbar.Link href="/logout" onClick={this.handleLogout}>
 										로그아웃
 									</Navbar.Link>

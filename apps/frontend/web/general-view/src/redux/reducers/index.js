@@ -4,6 +4,7 @@ import {reducer as form} from 'redux-form';
 import {reducer as reduxAsyncConnect} from 'redux-connect';
 
 import auth from './auth';
+import user from './user';
 import bookQuestion from './bookQuestion';
 import bookRecord from './bookRecord';
 import bookReport from './bookReport';
@@ -14,6 +15,7 @@ export default combineReducers({
 	reduxAsyncConnect,
 	form,
     auth,
+    user,
 	bookQuestion,
 	bookRecord,
 	bookReport,

@@ -61,28 +61,28 @@ export default class Header extends Component {
 						</div>
 					</div>
 					<div className="l-right l-float-clear">
-                            {
-                                user ?
-									<div>
-										<Link to="/profile">
-                                        	{user.userName}
-										</Link>
-                                        &nbsp;
-										<a href="#" onClick={this.handleLogout}>
-											퇴장하다
-										</a>
-									</div>
-                                    :
-									<div>
-										<Link to="/login">
-											입장하다
-										</Link>
-										&nbsp;
-										<Link to="/join">
-											가입하다
-										</Link>
-									</div>
-                            }
+						{
+							user ?
+								<div>
+									<Link to="/profile">
+										{user.name}
+									</Link>
+									&nbsp;
+									<a href="#" onClick={this.handleLogout}>
+										퇴장하다
+									</a>
+								</div>
+								:
+								<div>
+									<Link to="/login">
+										입장하다
+									</Link>
+									&nbsp;
+									<Link to="/join">
+										가입하다
+									</Link>
+								</div>
+						}
 						<div className="l-search">
 							<div className="l-input-wrapper">
 								<input className="l-input" type="text" placeholder="Search on Storage..." />

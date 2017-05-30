@@ -30,7 +30,6 @@ public class UserDto {
 
 	@Data
 	public static class Response {
-		private UUID uniqueId;
 		private String email;
 		private String name;
 		private boolean enabled;
