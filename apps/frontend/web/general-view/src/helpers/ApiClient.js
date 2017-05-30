@@ -11,17 +11,25 @@ function formatUrl(path) {
 	}
 
 	if (__SERVER__) {
-		// Prepend host and port of the API server to the path.
+        if(path.startsWith('/auth')){
+            return 'http://' + config.secHost + ':' + config.secPort + adjustedPath.replace('/auth', '');
+        }
+        // Prepend host and port of the API server to the path.
 		return 'http://' + config.apiHost + ':' + config.apiPort + adjustedPath;
 	}
-	// Prepend `/api` to relative URL, to proxy to API server.
+
+    if(path.startsWith('/auth')){
+        return adjustedPath;
+    }
+
+    // Prepend `/api` to relative URL, to proxy to API server.
 	return '/api' + adjustedPath;
 }
 
 export default class ApiClient {
 	constructor(req) {
 		methods.forEach((method) =>
-			this[method] = (path, {params, data, attach} = {}) => new Promise((resolve, reject) => {
+			this[method] = (path, {params, data, token, authorization, attach} = {}) => new Promise((resolve, reject) => {
 				const request = superagent[method](formatUrl(path));
 
 				if (params) {
@@ -32,7 +40,15 @@ export default class ApiClient {
 					request.set('cookie', req.get('cookie'));
 				}
 
-				if (attach) {
+                if (token) {
+                    request.set('X-XSRF-TOKEN', token);
+                }
+
+                if (authorization) {
+                    request.set('authorization', authorization);
+                }
+
+                if (attach) {
 					let formData = new FormData();
 					if(data) {
 						formData.append("data", new Blob([JSON.stringify(data)], {type : 'application/json'}));

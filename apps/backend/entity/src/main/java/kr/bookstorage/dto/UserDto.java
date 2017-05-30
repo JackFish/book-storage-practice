@@ -12,22 +12,27 @@ public class UserDto {
 	public static class Create {
 		private String email;
 		private String password;
-		private String userName;
+		private String name;
+	}
 
-		private List<UserRoleDto.Create> userRoleList;
+	@Data
+	public static class Update {
+		private UUID uniqueId;
+		private String password;
+		private String name;
 	}
 
 	@Data
 	public static class Summary {
 		private String email;
-		private String userName;
+		private String name;
 	}
 
 	@Data
 	public static class Response {
 		private UUID uniqueId;
 		private String email;
-		private String userName;
+		private String name;
 		private boolean enabled;
 		private DateTime createdDate;
 		private DateTime lastModifiedDate;

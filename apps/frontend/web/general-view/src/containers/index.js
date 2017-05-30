@@ -1,4 +1,5 @@
 export Root from './Root/Root';
+export Login from './Auth/Login';
 export Home from './Home/Home';
 export BookRecord from './BookRecord/BookRecord';
 export BookRecordList from './BookRecord/BookRecordList';
@@ -6,6 +7,5 @@ export BookRecordDetail from './BookRecord/BookRecordDetail';
 export BookReport from './BookReport/BookReport';
 export BookReportList from './BookReport/BookReportList';
 export BookReportDetail from './BookReport/BookReportDetail';
-export BookCalendar from './BookCalendar/BookCalendar';
 export BookChat from './BookChat/BookChat';
 export BookQuestion from './BookQuestion/BookQuestion';

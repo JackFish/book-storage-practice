@@ -1,4 +1,5 @@
 export Root from './Root/Root';
+export Login from './Auth/Login';
 export Home from './Home/Home';
 export BookRecord from './BookRecord/BookRecord';
 export BookRecordList from './BookRecord/BookRecordList';

@@ -8,4 +8,6 @@ public class ErrorStatus {
     public final static String IMAGE_CONTENT_TYPE_VALID_MESSAGE = "exceptions.image.content-type-valid-message";
     public final static String IMAGE_FILE_UPLOAD_ERROR_MESSAGE = "exceptions.image.file-upload-error-message";
     public final static String YOUTUBE_BLOCK_YOUTUBE_URL_VALID_MESSAGE = "exceptions.youtube-block.youtube-url-valid-message";
+    public final static String USER_EMAIL_EXIST_MESSAGE = "exceptions.user.email-exist-message";
+    public final static String USER_NAME_EXIST_MESSAGE = "exceptions.user.name-exist-message";
 }

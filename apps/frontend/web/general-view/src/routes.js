@@ -1,42 +1,57 @@
 import React from 'react';
 import {IndexRoute, Route} from 'react-router';
-// import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
+import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/reducers/auth';
 import {
 	Root,
 	Home,
+    Login,
 	BookRecord,
 	BookRecordList,
 	BookRecordDetail,
 	BookReport,
 	BookReportList,
 	BookReportDetail,
-	BookCalendar,
 	BookChat,
 	BookQuestion
 } from './containers';
 
 export default (store) => {
-	// const requireLogin = (nextState, replace, cb) => {
-	//   function checkAuth() {
-	//     const { auth: { user }} = store.getState();
-	//     if (!user) {
-	//       // oops, not logged in, so can't be here!
-	//       replace('/');
-	//     }
-	//     cb();
-	//   }
-	//
-	//   if (!isAuthLoaded(store.getState())) {
-	//     store.dispatch(loadAuth()).then(checkAuth);
-	//   } else {
-	//     checkAuth();
-	//   }
-	// };
+    const requireLogin = (nextState, replace, cb) => {
+        function checkAuth() {
+            const {auth: {user}} = store.getState();
+            if (!user) {
+                // oops, not logged in, so can't be here!
+                replace({
+                    pathname: '/login',
+                    state: {nextPathname: nextState.location.pathname}
+                });
+            }
+            cb();
+        }
+
+        if (!isAuthLoaded(store.getState())) {
+            store.dispatch(loadAuth()).then(checkAuth).catch(e => {
+                replace({
+                    pathname: '/login',
+                    state: {nextPathname: nextState.location.pathname}
+                });
+
+                cb();
+            });
+        } else {
+            checkAuth();
+        }
+    };
+    store.dispatch(loadAuth());
 
 	return (
 		<Route path="/" component={Root}>
 			{ /* Home (main) route */ }
 			<IndexRoute component={Home}/>
+
+			<Route path="login" component={Login}>
+			</Route>
+
 			<Route path="bookRecord" component={BookRecord}>
 				<IndexRoute component={BookRecordList} />
 				<Route path="detail/:idx" component = {BookRecordDetail} />
@@ -44,8 +59,6 @@ export default (store) => {
 			<Route path="bookReport" component={BookReport}>
 				<IndexRoute component={BookReportList} />
 				<Route path="detail/:idx" component = {BookReportDetail} />
-			</Route>
-			<Route path="bookCalendar" component={BookCalendar}>
 			</Route>
 			<Route path="bookChat" component={BookChat}>
 			</Route>

@@ -29,7 +29,7 @@
         "APIPORT": 80,
         "SECHOST": "security.bookstorage.kr",
         "SECPORT": 80,
-        "SEAHOST": "search.bookstorage.kr",
+        "SEAHOST": "www.bookstorage.kr/socket",
         "SEAPORT": 80
       }
     },
@@ -41,7 +41,7 @@
         "PORT": 3000,
         "APIPORT": 8080,
         "SECPORT": 8081,
-        "SEAPORT": 9200
+        "SOCPORT": 8082
       }
     },
     "watch-client": {
@@ -121,6 +121,8 @@
     "socket.io-client": "^1.3.7",
     "style-loader": "^0.13.1",
     "superagent": "^1.4.0",
+    "sockjs-client": "^1.1.4",
+    "stompjs": "^2.3.3",
     "url-loader": "^0.5.7",
     "warning": "^2.1.0",
     "webfontloader": "^1.6.26",

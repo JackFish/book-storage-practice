@@ -12,7 +12,7 @@ export default class BookChat extends Component {
     render() {
         return (
             <div className="l-main-container">
-                <h1>채팅</h1>
+                <h1>대화</h1>
                 <div className="l-description">
                     <p>
                         채팅

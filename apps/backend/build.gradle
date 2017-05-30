@@ -51,6 +51,7 @@ subprojects {
         compile("org.hibernate:hibernate-core:${hibernateVersion}")
         compile("org.hibernate:hibernate-java8:${hibernateVersion}")
         compile("org.hibernate:hibernate-entitymanager:${hibernateVersion}")
+        compile("mysql:mysql-connector-java:5.1.38")
 
         compile("org.springframework.boot:spring-boot-starter-logging:${springBootVersion}")
 
@@ -93,6 +94,27 @@ project(':api') {
         compile springSocial
         compile 'com.h2database:h2'
         compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.14'
+    }
+
+    war.doLast{
+        explodedWar.execute()
+    }
+    task explodedWar(type : Copy){
+        into "$buildDir/exploded"
+        with war
+    }
+
+    war.dependsOn explodedWar
+}
+
+project(':socket') {
+    apply plugin: 'war'
+
+    dependencies {
+        compile project(':cmm-config'), project(':cmm-logic')
+        compile springSocial
+        compile 'com.h2database:h2:1.4.192'
+        compile("org.springframework.boot:spring-boot-starter-websocket:${springBootVersion}")
     }
 
     war.doLast{

@@ -5,21 +5,25 @@ spring:
       ddl-auto: none
     generate-ddl: false
     show-sql: true
-
-  h2:
-    console:
-      enabled: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+    properties:
+      hibernate:
+        format_sql: false
+        physical_naming_strategy: kr.bookstorage.config.ImprovedNamingStrategy
+        implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
 
   datasource:
-    url: jdbc:h2:file:~/bookstorage;AUTO_SERVER=TRUE
+    url: jdbc:mysql://175.124.95.216:3306/book_storage
+    username: root
+    password: ksb
+    driver-class-name: com.mysql.jdbc.Driver
+    test-on-borrow: true
+    validation-query: select 1 from dual
 
   redis:
     host: localhost
     password:
     port: 6379
-
-  profiles:
-    active: local
 
   http:
     multipart:
@@ -39,9 +43,12 @@ bookstorage:
   image-host-url: http://localhost:8080/image
   # 업로드 설정
   upload:
-    path: /home/ksb/Documents/images
+    path: /Users/ksb/Documents/data/images
 
-# 시큐어리티 default settings
+---
+spring:
+  profiles: security-on
+
 ---
 spring:
   profiles: security

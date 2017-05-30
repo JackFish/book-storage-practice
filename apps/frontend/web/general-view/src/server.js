@@ -20,6 +20,7 @@ import {Provider} from 'react-redux';
 import getRoutes from './routes';
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
+const secTargetUrl = 'http://' + config.secHost + ':' + config.secPort;
 const pretty = new PrettyError();
 const app = new Express();
 const server = new http.Server(app);
@@ -27,6 +28,11 @@ const server = new http.Server(app);
 const proxy = httpProxy.createProxyServer({
   target: targetUrl,
   changeOrigin: true
+});
+
+const secProxy = httpProxy.createProxyServer({
+    target: secTargetUrl,
+    changeOrigin: true
 });
 
 app.use(compression());
@@ -38,6 +44,10 @@ app.use(Express.static(path.join(__dirname, '..', 'vendor')));
 // Proxy to API server
 app.use('/api', (req, res) => {
   proxy.web(req, res, {target: targetUrl});
+});
+
+app.use('/auth', (req, res) => {
+    secProxy.web(req, res, {target: secTargetUrl});
 });
 
 /*app.use('/ws', (req, res) => {

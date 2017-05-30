@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig {
 
 	@Configuration
-	@Profile("local")
+	@Profile("!security")
 	protected static class LocalSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {

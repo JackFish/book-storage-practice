@@ -53,16 +53,15 @@ public class CustomAuthProvider implements AuthenticationProvider {
 
 		User user = userEntityList.get(0);
 
-//		현재 평문으로 저장되어 있음
-//		if(!passwordEncoder.matches(password, user.getPassword())){
-//			throw new BadCredentialsException("사용자 정보가 없습니다.");
-//		}
+		if(!passwordEncoder.matches(password, user.getPassword())){
+			throw new BadCredentialsException("사용자 정보가 없습니다.");
+		}
 		log.debug("최초 권한 : {}", user.getUserRoleList().toString());
 		CmmUserDetails cud = (CmmUserDetails) userDetailsService.loadUserByUniqueId(user.getUniqueId());
 
 		log.debug("이메일 주소 : {}", user.getEmail());
 		log.debug("비밀번호 : {}", user.getPassword());
-		log.debug("이름 : {}", user.getUserName());
+		log.debug("이름 : {}", user.getName());
 		log.debug("권한 : {}", user.getUserRoleList().toString());
 
 		return new UsernamePasswordAuthenticationToken(cud, user.getUniqueId(), cud.getAuthorities());

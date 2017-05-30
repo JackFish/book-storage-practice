@@ -30,19 +30,22 @@ public class CmmLoginHelper {
     public static User getUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (ObjectUtils.isEmpty(authentication) ||
-                authentication.getAuthorities().size() == 0 ||
-                authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))) {
+//        권한안가져오는거 검사
+        if (ObjectUtils.isEmpty(authentication)
+//                ||
+//                authentication.getAuthorities().size() == 0 ||
+//                authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))
+                ) {
 
-            String[] activeProfiles = environment.getActiveProfiles();
+//            String[] activeProfiles = environment.getActiveProfiles();
 
             User user = new User();
 
-            if(activeProfiles != null){
-                if(Arrays.asList(activeProfiles).contains("local") || Arrays.asList(activeProfiles).contains("local-sec") || Arrays.asList(activeProfiles).contains("test")){
-                    user.setUniqueId(UUID.fromString("671ab3a1-c22b-45eb-99d0-e10ab7a4742f"));
-                }
-            }
+//            if(activeProfiles != null){
+//                if(Arrays.asList(activeProfiles).contains("local") || Arrays.asList(activeProfiles).contains("local-sec") || Arrays.asList(activeProfiles).contains("test")){
+//                    user.setUniqueId(UUID.fromString("671ab3a1-c22b-45eb-99d0-e10ab7a4742f"));
+//                }
+//            }
 
             return user;
 
