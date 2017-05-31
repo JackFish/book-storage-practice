@@ -6,7 +6,7 @@ const client = new ApiClient();
 
 const userAsyncValidate = (values, dispatch) => {
     let promise = new Promise((resolve, reject) => {
-        client.get("/user/exist/name/" + values.name).then(
+        client.get("/user/exist/name/" + values.userName).then(
             (result) => {
                 resolve();
             },

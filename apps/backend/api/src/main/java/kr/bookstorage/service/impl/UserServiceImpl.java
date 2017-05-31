@@ -51,8 +51,8 @@ public class UserServiceImpl implements UserService {
     public User update(UserDto.Update user) {
         User result = userRepository.findOne(user.getUniqueId());
 
-        if(!ObjectUtils.isEmpty(user.getName())){
-            result.setName(user.getName());
+        if(!ObjectUtils.isEmpty(user.getUserName())){
+            result.setUserName(user.getUserName());
         }
         if(!ObjectUtils.isEmpty(user.getPassword())){
             result.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -72,8 +72,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean existName(String name) {
-        User user = userRepository.findByName(name);
+    public boolean existUserName(String userName) {
+        User user = userRepository.findByUserName(userName);
 
         if(!ObjectUtils.isEmpty(user)){
             return true;

@@ -36,9 +36,9 @@ export default class ProfileWrapper extends Component {
 @reduxForm(
     {
         form: 'Profile',
-        fields: ['email', 'password', 'name'],
+        fields: ['email', 'password', 'userName'],
         asyncValidate: UserAsyncValidate,
-        asyncBlurFields: ['name'],
+        asyncBlurFields: ['userName'],
         validate: UserValidation
     },
     state => ({
@@ -50,7 +50,7 @@ export class Profile extends Component {
     static propTypes = {}
 
     render() {
-        const {fields: {email, password, name}, values, handleSubmit, submitting, invalid} = this.props;
+        const {fields: {email, password, userName}, values, handleSubmit, submitting, invalid} = this.props;
         const {loading, pushState, update} = this.props;
 
         return (
@@ -74,13 +74,13 @@ export class Profile extends Component {
                                 {password.touched && password.error && <HelpBlock>{password.error}</HelpBlock>}
                             </Col>
                         </FormGroup>
-                        <FormGroup controlId="name" validationState={name.visited && name.invalid ? 'error' : null}>
+                        <FormGroup controlId="userName" validationState={userName.visited && userName.invalid ? 'error' : null}>
                             <Col sm={3}>
                                 <ControlLabel>이름</ControlLabel>
                             </Col>
                             <Col sm={9}>
-                                <FormControl type="text" placeholder="이름"  {...name} />
-                                {name.touched && name.error && <HelpBlock>{name.error}</HelpBlock>}
+                                <FormControl type="text" placeholder="이름"  {...userName} />
+                                {userName.touched && userName.error && <HelpBlock>{userName.error}</HelpBlock>}
                             </Col>
                         </FormGroup>
                     </Col>

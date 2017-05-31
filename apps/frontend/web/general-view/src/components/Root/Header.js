@@ -65,7 +65,7 @@ export default class Header extends Component {
 							user ?
 								<div>
 									<Link to="/profile">
-										{user.name}
+										{user.userName}
 									</Link>
 									&nbsp;
 									<a href="#" onClick={this.handleLogout}>

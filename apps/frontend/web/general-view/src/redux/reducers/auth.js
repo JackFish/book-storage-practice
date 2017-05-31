@@ -118,7 +118,7 @@ export default function reducer(state = initialState, action = {}) {
                 ...state,
                 user: {
                     ...state.user,
-                    name: action.user.name
+                    userName: action.user.userName
                 },
                 loading: false
             };

@@ -19,12 +19,12 @@ const userAsyncValidate = (values, dispatch) => {
     });
 
     let promise2 = new Promise((resolve, reject) => {
-        client.get("/user/exist/name/" + values.name).then(
+        client.get("/user/exist/name/" + values.userName).then(
             (result) => {
                 resolve();
             },
             (error) => {
-                reject({name: '이미 등록된 이름입니다.'})
+                reject({userName: '이미 등록된 이름입니다.'})
             }
         ).catch((error)=> {
             console.error(error);

@@ -38,7 +38,7 @@ public class DefaultUserConfig {
 			if(ObjectUtils.isEmpty(adminUser)){
 				UserDto.Create userCreate = new UserDto.Create();
 				userCreate.setEmail("admin@bookstorage.co.kr");
-				userCreate.setName("admin");
+				userCreate.setUserName("admin");
 				userCreate.setPassword(passwordEncoder.encode("admin"));
 				User user = modelMapper.map(userCreate, User.class);
 				user.setEnabled(true);
@@ -57,7 +57,7 @@ public class DefaultUserConfig {
 			if(ObjectUtils.isEmpty(generalUser)){
 				UserDto.Create userCreate = new UserDto.Create();
 				userCreate.setEmail("general@bookstorage.co.kr");
-				userCreate.setName("general");
+				userCreate.setUserName("general");
 				userCreate.setPassword(passwordEncoder.encode("general"));
 				User user = modelMapper.map(userCreate, User.class);
 				user.setEnabled(true);

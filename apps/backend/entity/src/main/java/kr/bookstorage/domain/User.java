@@ -36,8 +36,8 @@ public class User implements Serializable {
 	@Column(name = "ENABLED", nullable = false)
 	private boolean enabled;
 
-	@Column(name = "NAME", nullable = false)
-	private String name;
+	@Column(name = "USER_NAME", nullable = false)
+	private String userName;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.PERSIST)
 	private List<UserRole> userRoleList;

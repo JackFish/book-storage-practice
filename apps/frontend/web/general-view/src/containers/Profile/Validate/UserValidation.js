@@ -18,11 +18,11 @@ const userValidation = values => {
         errors.password = checkBlank(values.password);
     }
 
-    if (!errors.name) {
-        errors.name = required(values.name);
+    if (!errors.userName) {
+        errors.userName = required(values.userName);
     }
-    if (!errors.name) {
-        errors.name = checkBlank(values.name);
+    if (!errors.userName) {
+        errors.userName = checkBlank(values.userName);
     }
     return errors
 }

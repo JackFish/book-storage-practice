@@ -34,7 +34,7 @@ public class CmmLoginHelper {
                 authentication.getAuthorities().size() == 0 ||
                 authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))) {
             return null;
-        } else{
+        } else {
             CmmUserDetails cud = (CmmUserDetails) authentication.getPrincipal();
             User user = ((User) cud.getUser());
             return user;

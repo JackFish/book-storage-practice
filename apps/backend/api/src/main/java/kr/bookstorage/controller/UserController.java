@@ -1,9 +1,11 @@
 package kr.bookstorage.controller;
 
+import kr.bookstorage.domain.User;
 import kr.bookstorage.dto.UserDto;
 import kr.bookstorage.exception.ErrorStatus;
 import kr.bookstorage.exception.exceptions.ForbiddenException;
 import kr.bookstorage.security.service.CmmLoginHelper;
+import kr.bookstorage.security.service.CmmUserDetails;
 import kr.bookstorage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +37,7 @@ public class UserController {
     public void update(@RequestBody UserDto.Update user, Authentication authentication){
         user.setUniqueId((UUID)authentication.getCredentials());
         userServiceImpl.update(user);
-        // 세션에서 유저정보 수정해야함
+        // todo 세션에서 유저정보 수정해야함
     }
 
     @GetMapping("/exist/email/{email}")
@@ -45,7 +47,7 @@ public class UserController {
 
     @GetMapping("/exist/name/{name}")
     public void existName(@PathVariable("name") String name){
-        if(userServiceImpl.existName(name)) throw new ForbiddenException(ErrorStatus.USER_NAME_EXIST_MESSAGE);
+        if(userServiceImpl.existUserName(name)) throw new ForbiddenException(ErrorStatus.USER_NAME_EXIST_MESSAGE);
     }
 
 }

@@ -61,7 +61,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
 
 		log.debug("이메일 주소 : {}", user.getEmail());
 		log.debug("비밀번호 : {}", user.getPassword());
-		log.debug("이름 : {}", user.getName());
+		log.debug("이름 : {}", user.getUserName());
 		log.debug("권한 : {}", user.getUserRoleList().toString());
 
 		return new UsernamePasswordAuthenticationToken(cud, user.getUniqueId(), cud.getAuthorities());
