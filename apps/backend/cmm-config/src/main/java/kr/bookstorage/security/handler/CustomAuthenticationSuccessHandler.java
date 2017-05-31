@@ -49,23 +49,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         String url = request.getRequestURI();
         log.debug("URL: {}", url);
 
-        if(url != null && url.startsWith("/auth") && url.contains(";")){
-            String[] activeProfile = environment.getActiveProfiles();
-            log.debug("PROFILES IS PROD ? : {}", Arrays.binarySearch(activeProfile, "prod"));
-            log.debug("PROFILES IS SECURITY ? : {}", Arrays.binarySearch(activeProfile, "security"));
-            String redirectCode = url.substring(url.indexOf(";") + 1);
-            log.debug("REDIRECT_CODE : {}", redirectCode);
-            switch (redirectCode){
-                case "public" :
-                    if(Arrays.binarySearch(activeProfile, "security") > -1) {
-                        redirectStrategy.sendRedirect(request, response, "http://localhost:3002/login-success");
-                    } else if(Arrays.binarySearch(activeProfile, "prod") > -1) {
-                        redirectStrategy.sendRedirect(request, response, "http://www.carlab.co.kr/adm/login-success");
-                    }
-                    return;
-            }
-        }
-
         response.setStatus(HttpServletResponse.SC_OK);
         response.setContentType("application/json");
 

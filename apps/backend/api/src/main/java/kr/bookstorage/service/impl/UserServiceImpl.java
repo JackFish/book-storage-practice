@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void update(UserDto.Update user) {
+    public User update(UserDto.Update user) {
         User result = userRepository.findOne(user.getUniqueId());
 
         if(!ObjectUtils.isEmpty(user.getName())){
@@ -57,6 +57,8 @@ public class UserServiceImpl implements UserService {
         if(!ObjectUtils.isEmpty(user.getPassword())){
             result.setPassword(passwordEncoder.encode(user.getPassword()));
         }
+
+        return result;
     }
 
     @Override

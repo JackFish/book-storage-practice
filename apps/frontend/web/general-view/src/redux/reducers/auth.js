@@ -17,8 +17,16 @@ const LOGOUT = 'auth/LOGOUT';
 const LOGOUT_SUCCESS = 'auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'auth/LOGOUT_FAIL';
 
+const CREATE = "user/CREATE";
+const CREATE_SUCCESS = "user/CREATE_SUCCESS";
+const CREATE_FAIL = "user/CREATE_FAIL";
+
+const UPDATE = "user/UPDATE";
+const UPDATE_SUCCESS = "user/UPDATE_SUCCESS";
+const UPDATE_FAIL = "user/UPDATE_FAIL";
+
 const initialState = {
-    loaded: false,
+    loading: false,
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -27,64 +35,98 @@ export default function reducer(state = initialState, action = {}) {
             return {
                 ...state,
                 loading: true
-            }
+            };
         case AUTH_LOAD_SUCCESS:
             if(action.result.email) {
                 return {
                     ...state,
-                    loading: false,
-                    loaded: true,
-                    user: action.result
+                    user: action.result,
+                    loading: false
                 }
             }
             return {
                 ...state,
                 loading: false,
-                loaded: false
             }
         case AUTH_LOAD_FAIL:
             return {
                 ...state,
                 loading: false,
-                loaded: false
-            }
+            };
         case AUTH_TOKEN:
             return {
                 ...state
-            }
+            };
         case AUTH_TOKEN_SUCCESS:
             return {
                 ...state,
                 token: action.result.token
-            }
+            };
         case LOGIN:
             return {
-                ...state
-            }
+                ...state,
+                loading: true
+            };
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                loaded: true,
                 user: action.result,
-                loginError: null
-            }
+                loginError: null,
+                loading: false
+            };
         case LOGIN_FAIL:
             return {
                 ...state,
-                loginError: action.error.response.text
-            }
+                loginError: action.error.response.text,
+                loading: false
+            };
         case LOGOUT:
             return {
-                ...state
-            }
+                ...state,
+                loading: true
+            };
         case LOGOUT_SUCCESS:
         case LOGOUT_FAIL:
             return {
                 ...state,
                 user: null,
                 token: null,
-                loaded: false
-            }
+                loading: false
+            };
+        case CREATE:
+            return {
+                ...state,
+                loading: true
+            };
+        case CREATE_SUCCESS:
+            return {
+                ...state,
+                loading: false
+            };
+        case CREATE_FAIL:
+            return {
+                ...state,
+                loading: false
+            };
+        case UPDATE:
+            return {
+                ...state,
+                loading: true
+            };
+        case UPDATE_SUCCESS:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    name: action.user.name
+                },
+                loading: false
+            };
+        case UPDATE_FAIL:
+            return {
+                ...state,
+                loading: false
+            };
         default:
             return state;
     }
@@ -125,5 +167,24 @@ export function logout(token){
         promise: (client) => client.post('/auth/logout', {
             token: token
         })
+    }
+}
+
+export function create(user){
+    return {
+        types: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
+        promise: (client) => client.post('/user', {
+            data: user
+        })
+    }
+}
+
+export function update(user){
+    return {
+        types: [UPDATE, UPDATE_SUCCESS, UPDATE_FAIL],
+        promise: (client) => client.patch('/user', {
+            data: user
+        }),
+        user: user
     }
 }

@@ -1,6 +1,5 @@
 package kr.bookstorage.controller;
 
-import kr.bookstorage.domain.User;
 import kr.bookstorage.dto.UserDto;
 import kr.bookstorage.exception.ErrorStatus;
 import kr.bookstorage.exception.exceptions.ForbiddenException;
@@ -34,15 +33,9 @@ public class UserController {
     @PatchMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody UserDto.Update user, Authentication authentication){
-//        UUID uuid = null;
-//        User loginUser = CmmLoginHelper.getUser();
-//
-//        if(loginUser != null){
-//            uuid = loginUser.getUniqueId();
-//            user.setUniqueId(loginUser.getUniqueId());
-//        }
         user.setUniqueId((UUID)authentication.getCredentials());
         userServiceImpl.update(user);
+        // 세션에서 유저정보 수정해야함
     }
 
     @GetMapping("/exist/email/{email}")

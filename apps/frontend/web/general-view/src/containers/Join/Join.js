@@ -10,7 +10,7 @@ import {push as pushState} from 'react-router-redux';
 
 import UserValidation from "./Validate/UserValidation";
 import UserAsyncValidate from "./Validate/UserAsyncValidate";
-import {create} from 'redux/reducers/user';
+import {create} from 'redux/reducers/auth';
 
 @reduxForm(
     {
@@ -21,7 +21,7 @@ import {create} from 'redux/reducers/user';
         validate: UserValidation
     },
     state => ({
-        loading: state.user.loading,
+        loading: state.auth.loading,
     }),
     {pushState, create}
 )

@@ -1,5 +1,6 @@
 package kr.bookstorage.service;
 
+import kr.bookstorage.domain.User;
 import kr.bookstorage.dto.UserDto;
 
 /**
@@ -8,7 +9,7 @@ import kr.bookstorage.dto.UserDto;
 public interface UserService {
     void create(UserDto.Create user);
 
-    void update(UserDto.Update user);
+    User update(UserDto.Update user);
 
     boolean existEmail(String email);
 

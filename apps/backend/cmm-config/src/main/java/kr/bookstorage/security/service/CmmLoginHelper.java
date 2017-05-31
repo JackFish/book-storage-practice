@@ -30,30 +30,14 @@ public class CmmLoginHelper {
     public static User getUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-//        권한안가져오는거 검사
-        if (ObjectUtils.isEmpty(authentication)
-//                ||
-//                authentication.getAuthorities().size() == 0 ||
-//                authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))
-                ) {
-
-//            String[] activeProfiles = environment.getActiveProfiles();
-
-            User user = new User();
-
-//            if(activeProfiles != null){
-//                if(Arrays.asList(activeProfiles).contains("local") || Arrays.asList(activeProfiles).contains("local-sec") || Arrays.asList(activeProfiles).contains("test")){
-//                    user.setUniqueId(UUID.fromString("671ab3a1-c22b-45eb-99d0-e10ab7a4742f"));
-//                }
-//            }
-
-            return user;
-
+        if (ObjectUtils.isEmpty(authentication) ||
+                authentication.getAuthorities().size() == 0 ||
+                authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))) {
+            return null;
         } else{
             CmmUserDetails cud = (CmmUserDetails) authentication.getPrincipal();
             User user = ((User) cud.getUser());
             return user;
         }
     }
-
 }

@@ -10,7 +10,7 @@ import {push as pushState} from 'react-router-redux';
 
 import UserValidation from "./Validate/UserValidation";
 import UserAsyncValidate from "./Validate/UserAsyncValidate";
-import {update} from 'redux/reducers/user';
+import {update} from 'redux/reducers/auth';
 
 @connect(
     state => ({
@@ -42,7 +42,7 @@ export default class ProfileWrapper extends Component {
         validate: UserValidation
     },
     state => ({
-        loading: state.user.loading,
+        loading: state.auth.loading,
     }),
     {pushState, update}
 )
