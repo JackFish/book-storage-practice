@@ -18,6 +18,10 @@ public class TalkController {
     @Autowired
     private TalkService talkServiceImpl;
 
+    public void talkRoom(){
+
+    }
+
 //    @SubscribeMapping("/talk.participants")
 //    public Collection<LoginEvent> retrieveParticipants() {
 //        return participantRepository.getActiveSessions().values();

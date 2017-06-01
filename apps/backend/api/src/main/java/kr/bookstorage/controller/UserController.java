@@ -1,11 +1,9 @@
 package kr.bookstorage.controller;
 
-import kr.bookstorage.domain.User;
 import kr.bookstorage.dto.UserDto;
 import kr.bookstorage.exception.ErrorStatus;
 import kr.bookstorage.exception.exceptions.ForbiddenException;
 import kr.bookstorage.security.service.CmmLoginHelper;
-import kr.bookstorage.security.service.CmmUserDetails;
 import kr.bookstorage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,8 +34,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody UserDto.Update user, Authentication authentication){
         user.setUniqueId((UUID)authentication.getCredentials());
-        userServiceImpl.update(user);
-        // todo 세션에서 유저정보 수정해야함
+        CmmLoginHelper.setUser(userServiceImpl.update(user));
     }
 
     @GetMapping("/exist/email/{email}")
