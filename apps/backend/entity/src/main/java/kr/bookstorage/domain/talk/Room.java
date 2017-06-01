@@ -1,9 +1,10 @@
-package kr.bookstorage.domain;
+package kr.bookstorage.domain.talk;
 
 /**
  * Created by ohjic on 2017-06-01.
  */
-public class TalkRoom {
+public class Room {
     String subject;
     String description;
+    int participantLimit;
 }

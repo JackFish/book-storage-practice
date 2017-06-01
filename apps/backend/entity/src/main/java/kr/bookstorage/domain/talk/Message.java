@@ -1,8 +1,8 @@
-package kr.bookstorage.domain;
+package kr.bookstorage.domain.talk;
 
 /**
  * Created by ohjic on 2017-06-01.
  */
-public class TalkMessage {
+public class Message {
     String content;
 }
