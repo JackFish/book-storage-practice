@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by ohjic on 2017-06-02.
  */
-@RequestMapping("/board")
+@RequestMapping("/question")
 @RestController
 public class BoardController {
 
