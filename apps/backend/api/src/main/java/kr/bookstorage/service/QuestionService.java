@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 /**
  * Created by ohjic on 2017-06-02.
  */
-public interface BoardService {
+public interface QuestionService {
     Page<PostDto.Summary> findPostSummaryList(Pageable pageable, PostDto.Search search);
 
     PostDto.Detail findPostDetailOne(long idx);

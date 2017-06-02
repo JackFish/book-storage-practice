@@ -6,7 +6,7 @@ import kr.bookstorage.dto.PostDto;
 import kr.bookstorage.dto.ReplyDto;
 import kr.bookstorage.repository.PostRepository;
 import kr.bookstorage.repository.ReplyRepository;
-import kr.bookstorage.service.BoardService;
+import kr.bookstorage.service.QuestionService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,7 +24,7 @@ import static java.util.stream.Collectors.toList;
  * Created by ohjic on 2017-06-02.
  */
 @Service
-public class BoardServiceImpl implements BoardService {
+public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     private PostRepository postRepository;

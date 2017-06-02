@@ -2,7 +2,7 @@ package kr.bookstorage.controller;
 
 import kr.bookstorage.dto.PostDto;
 import kr.bookstorage.dto.ReplyDto;
-import kr.bookstorage.service.BoardService;
+import kr.bookstorage.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.*;
  */
 @RequestMapping("/question")
 @RestController
-public class BoardController {
+public class QuestionController {
 
     @Autowired
-    private BoardService boardServiceImpl;
+    private QuestionService boardServiceImpl;
 
     @GetMapping("/post")
     public Page<PostDto.Summary> findPostSummaryList(@PageableDefault(value = 20, sort = "idx", direction = Sort.Direction.DESC) Pageable pageable,
