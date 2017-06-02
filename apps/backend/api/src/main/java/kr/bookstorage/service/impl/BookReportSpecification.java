@@ -1,6 +1,5 @@
 package kr.bookstorage.service.impl;
 
-import kr.bookstorage.domain.BookRecord;
 import kr.bookstorage.domain.code.BookReportSearchStatus;
 import kr.bookstorage.dto.BookReportDto;
 import org.springframework.data.jpa.domain.Specification;
