@@ -17,8 +17,6 @@ import java.util.UUID;
 @Data
 public class User implements Serializable {
 
-	private static final long serialVersionUID = -5940694792721955482L;
-
 	@Id
 	@GeneratedValue(generator = "system-uuid")
 	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
@@ -41,5 +39,8 @@ public class User implements Serializable {
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.PERSIST)
 	private List<UserRole> userRoleList;
+
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private UserSocial userSocial;
 
 }

@@ -16,9 +16,10 @@ import java.io.Serializable;
 public class UserSocial implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IDX")
-    private long idx;
+    @OneToOne
+    @NotNull
+    @JoinColumn(name = "UNIQUE_ID")
+    private User user;
 
     @NotNull
     @Column(name = "PROVIDER_ID")
