@@ -1,7 +1,7 @@
 package kr.bookstorage.security.social.kakao.connect;
 
-import kr.co.carlab.security.social.kakao.api.Kakao;
-import kr.co.carlab.security.social.kakao.api.KakaoProfile;
+import kr.bookstorage.security.social.kakao.api.Kakao;
+import kr.bookstorage.security.social.kakao.api.KakaoProfile;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.ConnectionValues;
 import org.springframework.social.connect.UserProfile;

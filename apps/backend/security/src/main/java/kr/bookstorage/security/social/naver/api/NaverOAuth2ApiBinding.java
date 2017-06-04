@@ -1,7 +1,7 @@
 package kr.bookstorage.security.social.naver.api;
 
-import kr.co.carlab.security.social.naver.api.abstracts.UserOperation;
-import kr.co.carlab.security.social.naver.api.impl.UserOperationImpl;
+import kr.bookstorage.security.social.naver.api.abstracts.UserOperation;
+import kr.bookstorage.security.social.naver.api.impl.UserOperationImpl;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestFactory;

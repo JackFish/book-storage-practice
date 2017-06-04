@@ -1,8 +1,8 @@
 package kr.bookstorage.security.social.naver.connect;
 
 
-import kr.co.carlab.security.social.naver.api.Naver;
-import kr.co.carlab.security.social.naver.api.NaverOAuth2ApiBinding;
+import kr.bookstorage.security.social.naver.api.Naver;
+import kr.bookstorage.security.social.naver.api.NaverOAuth2ApiBinding;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 
 public final class NaverServiceProvider extends AbstractOAuth2ServiceProvider<Naver> {

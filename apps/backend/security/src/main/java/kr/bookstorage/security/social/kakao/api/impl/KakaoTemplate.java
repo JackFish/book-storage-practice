@@ -1,6 +1,6 @@
 package kr.bookstorage.security.social.kakao.api.impl;
 
-import kr.co.carlab.security.social.kakao.api.*;
+import kr.bookstorage.security.social.kakao.api.*;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestFactory;

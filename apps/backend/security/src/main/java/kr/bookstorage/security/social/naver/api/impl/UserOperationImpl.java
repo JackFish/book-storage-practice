@@ -1,9 +1,9 @@
 package kr.bookstorage.security.social.naver.api.impl;
 
-import kr.co.carlab.security.social.naver.api.abstracts.UserOperation;
-import kr.co.carlab.security.social.naver.api.model.UserProfile;
-import kr.co.carlab.security.social.naver.api.model.UserProfileResponse;
-import kr.co.carlab.security.social.naver.api.util.NaverApi;
+import kr.bookstorage.security.social.naver.api.abstracts.UserOperation;
+import kr.bookstorage.security.social.naver.api.model.UserProfile;
+import kr.bookstorage.security.social.naver.api.model.UserProfileResponse;
+import kr.bookstorage.security.social.naver.api.util.NaverApi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.social.InvalidAuthorizationException;

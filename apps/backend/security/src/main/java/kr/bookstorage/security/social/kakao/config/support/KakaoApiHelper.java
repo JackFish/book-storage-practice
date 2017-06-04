@@ -1,7 +1,7 @@
 package kr.bookstorage.security.social.kakao.config.support;
 
-import kr.co.carlab.security.social.kakao.api.Kakao;
-import kr.co.carlab.security.social.kakao.api.impl.KakaoTemplate;
+import kr.bookstorage.security.social.kakao.api.Kakao;
+import kr.bookstorage.security.social.kakao.api.impl.KakaoTemplate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.social.UserIdSource;

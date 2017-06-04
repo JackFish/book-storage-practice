@@ -1,6 +1,7 @@
 package kr.bookstorage.security.service.impl;
 
 import kr.bookstorage.domain.User;
+import kr.bookstorage.domain.code.SocialProvider;
 import kr.bookstorage.security.service.CmmSocialAndUserDetailService;
 import kr.bookstorage.security.service.CmmUserDetails;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.social.connect.ConnectionKey;
+import org.springframework.social.security.SocialUserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +31,7 @@ public class CmmSocialAndUserDetailsServiceImpl implements CmmSocialAndUserDetai
 
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String uniqueId) throws UsernameNotFoundException {
+    public CmmUserDetails loadUserByUsername(String uniqueId) throws UsernameNotFoundException {
         log.debug("uniqueId: {}", uniqueId);
         log.debug("UUID: {}", UUID.fromString(uniqueId));
         User user = userDAO.findOne(UUID.fromString(uniqueId));
@@ -40,21 +43,20 @@ public class CmmSocialAndUserDetailsServiceImpl implements CmmSocialAndUserDetai
         List<GrantedAuthority> authorities = new ArrayList<>();
         log.debug("ROLE: {}", user.getUserRoleList().toString());
         user.getUserRoleList().forEach(role ->
-            authorities.add(new SimpleGrantedAuthority(role.getRole()))
+                authorities.add(new SimpleGrantedAuthority(role.getRole()))
         );
 
         return new CmmUserDetails(
-            user.getUniqueId().toString(),
-            user.getPassword(),
-            user.isEnabled(),
-            user.isEnabled(),
-            user.isEnabled(),
-            user.isEnabled(),
-            authorities,
-            user
+                user.getUniqueId().toString(),
+                user.getPassword(),
+                user.isEnabled(),
+                user.isEnabled(),
+                user.isEnabled(),
+                user.isEnabled(),
+                authorities,
+                user
         );
     }
-
 
     @Override
     public UserDetails loadUserByUniqueId(UUID uuid) throws UsernameNotFoundException {
@@ -65,9 +67,26 @@ public class CmmSocialAndUserDetailsServiceImpl implements CmmSocialAndUserDetai
     }
 
     @Override
+    public User loadUserByConnectionKey(ConnectionKey connectionKey) {
+        User user = userDAO.findByUserSocial_ProviderIdAndUserSocial_ProviderUserId(SocialProvider.valueOf(connectionKey.getProviderId()), connectionKey.getProviderUserId());
+        return checkUser(user);
+    }
+
+    @Override
+    public void updateUserSocial(User user) {
+        userDAO.saveAndFlush(user);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public User findByUserId(String userId) {
         return userDAO.findOne(UUID.fromString(userId));
+    }
+
+    @Override
+    public SocialUserDetails loadUserByUserId(String uniqueId) throws UsernameNotFoundException {
+        log.debug("SOCIAL USER ID : {}", uniqueId);
+        return loadUserByUsername(uniqueId);
     }
 
     private User checkUser(User user){

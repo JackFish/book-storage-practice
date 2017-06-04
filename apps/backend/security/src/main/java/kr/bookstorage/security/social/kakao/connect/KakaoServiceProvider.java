@@ -1,7 +1,7 @@
 package kr.bookstorage.security.social.kakao.connect;
 
-import kr.co.carlab.security.social.kakao.api.Kakao;
-import kr.co.carlab.security.social.kakao.api.impl.KakaoTemplate;
+import kr.bookstorage.security.social.kakao.api.Kakao;
+import kr.bookstorage.security.social.kakao.api.impl.KakaoTemplate;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 
 public class KakaoServiceProvider extends AbstractOAuth2ServiceProvider<Kakao> {

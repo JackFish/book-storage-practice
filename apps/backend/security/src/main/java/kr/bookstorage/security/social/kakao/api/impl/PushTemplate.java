@@ -1,9 +1,9 @@
 package kr.bookstorage.security.social.kakao.api.impl;
 
-import kr.co.carlab.security.social.kakao.api.ForApns;
-import kr.co.carlab.security.social.kakao.api.ForGcm;
-import kr.co.carlab.security.social.kakao.api.PushOperation;
-import kr.co.carlab.security.social.kakao.api.PushToken;
+import kr.bookstorage.security.social.kakao.api.ForApns;
+import kr.bookstorage.security.social.kakao.api.ForGcm;
+import kr.bookstorage.security.social.kakao.api.PushOperation;
+import kr.bookstorage.security.social.kakao.api.PushToken;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;

@@ -1,7 +1,7 @@
 package kr.bookstorage.security.social.naver.config.xml;
 
-import kr.co.carlab.security.social.naver.config.support.NaverApiHelper;
-import kr.co.carlab.security.social.naver.connect.NaverConnectionFactory;
+import kr.bookstorage.security.social.naver.config.support.NaverApiHelper;
+import kr.bookstorage.security.social.naver.connect.NaverConnectionFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.social.config.xml.AbstractProviderConfigBeanDefinitionParser;

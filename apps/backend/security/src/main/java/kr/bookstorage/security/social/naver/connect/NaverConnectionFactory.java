@@ -1,7 +1,7 @@
 package kr.bookstorage.security.social.naver.connect;
 
 
-import kr.co.carlab.security.social.naver.api.Naver;
+import kr.bookstorage.security.social.naver.api.Naver;
 import org.springframework.social.connect.support.OAuth2ConnectionFactory;
 import org.springframework.social.security.provider.OAuth2AuthenticationService;
 

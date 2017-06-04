@@ -1,7 +1,7 @@
 package kr.bookstorage.security.social.kakao.api.impl;
 
-import kr.co.carlab.security.social.kakao.api.KakaoTalkProfile;
-import kr.co.carlab.security.social.kakao.api.TalkOperation;
+import kr.bookstorage.security.social.kakao.api.KakaoTalkProfile;
+import kr.bookstorage.security.social.kakao.api.TalkOperation;
 import org.springframework.web.client.RestTemplate;
 
 public class TalkTemplate extends AbstractKakaoOperations implements TalkOperation {

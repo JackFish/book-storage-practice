@@ -1,13 +1,14 @@
 package kr.bookstorage.security.service;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.social.security.SocialUserDetails;
 
 import java.util.Collection;
 
 /**
  * Created by 권성봉 on 8/10/16.
  */
-public class CmmUserDetails extends org.springframework.security.core.userdetails.User {
+public class CmmUserDetails extends org.springframework.security.core.userdetails.User implements SocialUserDetails {
 
     public CmmUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);

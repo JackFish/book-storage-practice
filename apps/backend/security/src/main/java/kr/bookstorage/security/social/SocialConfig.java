@@ -1,6 +1,7 @@
 package kr.bookstorage.security.social;
 
 import kr.bookstorage.security.service.CmmSocialAndUserDetailService;
+import kr.bookstorage.security.service.CustomSocialUsersConnectionRepository;
 import kr.bookstorage.security.social.kakao.connect.KakaoConnectionFactory;
 import kr.bookstorage.security.social.naver.connect.NaverConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

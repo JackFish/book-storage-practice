@@ -1,8 +1,8 @@
 package kr.bookstorage.security.social.kakao.config.xml;
 
-import kr.co.carlab.security.social.kakao.config.support.KakaoApiHelper;
-import kr.co.carlab.security.social.kakao.connect.KakaoConnectionFactory;
-import kr.co.carlab.security.social.kakao.security.KakaoAuthenticationService;
+import kr.bookstorage.security.social.kakao.config.support.KakaoApiHelper;
+import kr.bookstorage.security.social.kakao.connect.KakaoConnectionFactory;
+import kr.bookstorage.security.social.kakao.security.KakaoAuthenticationService;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.social.config.xml.AbstractProviderConfigBeanDefinitionParser;

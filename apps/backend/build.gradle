@@ -53,6 +53,8 @@ subprojects {
         compile("org.hibernate:hibernate-entitymanager:${hibernateVersion}")
         compile("mysql:mysql-connector-java:5.1.38")
 
+        compile("org.springframework.boot:spring-boot-starter-data-elasticsearch:${springBootVersion}")
+
         compile("org.springframework.boot:spring-boot-starter-logging:${springBootVersion}")
 
         compile("org.modelmapper:modelmapper:0.7.6")
@@ -83,6 +85,7 @@ project(':cmm-logic') {
 project(':cmm-config') {
     dependencies {
         compile project(':cmm-logic')
+        compile springSocial
     }
 }
 
@@ -91,7 +94,6 @@ project(':api') {
 
     dependencies {
         compile project(':cmm-config')
-        compile springSocial
         compile 'com.h2database:h2'
         compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.14'
     }
@@ -112,7 +114,6 @@ project(':socket') {
 
     dependencies {
         compile project(':cmm-config'), project(':cmm-logic')
-        compile springSocial
         compile 'com.h2database:h2:1.4.192'
         compile("org.springframework.boot:spring-boot-starter-websocket:${springBootVersion}")
     }
@@ -133,8 +134,8 @@ project(':security') {
 
     dependencies {
         compile project(':cmm-config')
-        compile springSocial
         compile 'com.h2database:h2'
+        compile("org.springframework.social:spring-social-facebook:2.0.3.RELEASE")
     }
 
     war.doLast{

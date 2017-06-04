@@ -1,7 +1,7 @@
 package kr.bookstorage.security.social.naver.connect;
 
-import kr.co.carlab.security.social.naver.api.Naver;
-import kr.co.carlab.security.social.naver.api.abstracts.UserOperation;
+import kr.bookstorage.security.social.naver.api.Naver;
+import kr.bookstorage.security.social.naver.api.abstracts.UserOperation;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.ConnectionValues;
 import org.springframework.social.connect.UserProfile;

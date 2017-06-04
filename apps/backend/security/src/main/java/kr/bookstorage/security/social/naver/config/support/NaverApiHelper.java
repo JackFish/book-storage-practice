@@ -1,7 +1,7 @@
 package kr.bookstorage.security.social.naver.config.support;
 
-import kr.co.carlab.security.social.naver.api.Naver;
-import kr.co.carlab.security.social.naver.api.NaverOAuth2ApiBinding;
+import kr.bookstorage.security.social.naver.api.Naver;
+import kr.bookstorage.security.social.naver.api.NaverOAuth2ApiBinding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.social.UserIdSource;
