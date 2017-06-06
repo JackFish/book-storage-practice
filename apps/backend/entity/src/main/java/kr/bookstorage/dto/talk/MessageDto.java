@@ -18,6 +18,7 @@ public class MessageDto {
     @Data
     public static class Create {
         private String content;
+        private RoomDto.Refer room;
     }
 
 }

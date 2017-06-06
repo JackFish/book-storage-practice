@@ -28,7 +28,7 @@ public class QuestionController {
     }
 
     @GetMapping("/post/{idx}")
-    public PostDto.Detail findDetailOne(@PathVariable("idx") long idx) {
+    public PostDto.Detail findPostDetailOne(@PathVariable("idx") long idx) {
         return boardServiceImpl.findPostDetailOne(idx);
     }
 
