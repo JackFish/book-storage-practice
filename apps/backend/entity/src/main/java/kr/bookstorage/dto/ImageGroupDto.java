@@ -15,7 +15,7 @@ public class ImageGroupDto {
 
     @Data
     public static class Update {
-        @Value("${bookstorage.upload.path}")
+        @Value("${bookstorage.upload.image-path}")
         private String uploadPath;
 
         private long imageGroupIdx;

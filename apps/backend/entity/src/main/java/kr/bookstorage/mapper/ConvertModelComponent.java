@@ -17,7 +17,7 @@ import static java.util.stream.Collectors.toList;
 @Component
 public class ConvertModelComponent {
 
-    @Value("${bookstorage.upload.path}")
+    @Value("${bookstorage.upload.image-path}")
     private String uploadPath;
 
     @Autowired

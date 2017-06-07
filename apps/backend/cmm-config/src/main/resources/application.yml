@@ -51,6 +51,19 @@ spring:
 #          tcp:
 #            connec_timeout: 120s
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: rnsjtjdqhd39@naver.com
+    password: password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
 management:
   security:
     sessions: NEVER
@@ -64,7 +77,8 @@ bookstorage:
   image-host-url: http://localhost:8080/image
   # 업로드 설정
   upload:
-    path: /Users/ksb/Documents/data/images
+    image-path: /Users/ksb/Documents/data/images
+    email-path: /Users/ksb/Documents/data/email
 
 ---
 spring:

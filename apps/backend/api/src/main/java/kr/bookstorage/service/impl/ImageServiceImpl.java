@@ -28,7 +28,7 @@ public class ImageServiceImpl implements ImageService {
 	@Autowired
 	private ImageGroupRepository imageGroupRepository;
 
-	@Value("${bookstorage.upload.path}") private String uploadPath;
+	@Value("${bookstorage.upload.image-path}") private String uploadPath;
 
 	@Transactional
 	@Modifying

@@ -136,6 +136,27 @@ project(':security') {
         compile project(':cmm-config')
         compile 'com.h2database:h2'
         compile("org.springframework.social:spring-social-facebook:2.0.3.RELEASE")
+        compile group: 'org.springframework.social', name: 'spring-social-google', version: '1.0.0.RELEASE'
+    }
+
+    war.doLast{
+        explodedWar.execute()
+    }
+    task explodedWar(type : Copy){
+        into "$buildDir/exploded"
+        with war
+    }
+
+    war.dependsOn explodedWar
+}
+
+project(':email') {
+    apply plugin: 'war'
+
+    dependencies {
+        compile project(':cmm-config'), project(':cmm-logic')
+        compile 'com.h2database:h2:1.4.192'
+        compile("org.springframework.boot:spring-boot-starter-mail:${springBootVersion}")
     }
 
     war.doLast{
