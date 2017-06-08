@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
@@ -43,6 +44,13 @@ public class Application extends SpringBootServletInitializer {
 	@Bean
 	public PlatformTransactionManager transactionManager() {
 		return new JpaTransactionManager(entityManagerFactory);
+	}
+
+	@Bean
+	public SimpleMailMessage templateSimpleMessage() {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setText("This is the test email template for your email:\n%s\n");
+		return message;
 	}
 
 	@Profile("security-on")

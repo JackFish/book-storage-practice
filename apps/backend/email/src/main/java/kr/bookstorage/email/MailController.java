@@ -61,6 +61,9 @@ public class MailController {
         Map<String, String> props = labels.get("send");
 
         MailObject mailObject = new MailObject();
+        mailObject.setTo("rnjstjdqhd39@naver.com");
+        mailObject.setSubject("TSET");
+        mailObject.setText("TSETTEST");
 
         emailService.sendSimpleMessage(mailObject.getTo(),
                 mailObject.getSubject(), mailObject.getText());
