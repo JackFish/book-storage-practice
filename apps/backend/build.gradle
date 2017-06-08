@@ -169,3 +169,42 @@ project(':email') {
 
     war.dependsOn explodedWar
 }
+
+project(':push') {
+    apply plugin: 'war'
+
+    dependencies {
+        compile project(':cmm-config'), project(':cmm-logic')
+        compile 'com.h2database:h2:1.4.192'
+    }
+
+    war.doLast{
+        explodedWar.execute()
+    }
+    task explodedWar(type : Copy){
+        into "$buildDir/exploded"
+        with war
+    }
+
+    war.dependsOn explodedWar
+}
+
+project(':batch') {
+    apply plugin: 'war'
+
+    dependencies {
+        compile project(':cmm-config'), project(':cmm-logic')
+        compile 'com.h2database:h2:1.4.192'
+        compile("org.springframework.boot:spring-boot-starter-batch:${springBootVersion}")
+    }
+
+    war.doLast{
+        explodedWar.execute()
+    }
+    task explodedWar(type : Copy){
+        into "$buildDir/exploded"
+        with war
+    }
+
+    war.dependsOn explodedWar
+}
