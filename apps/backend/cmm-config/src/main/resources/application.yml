@@ -51,18 +51,29 @@ spring:
 #          tcp:
 #            connec_timeout: 120s
 
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: rnjstjdqhd3939
+#    password:
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+
   mail:
-    host: smtp.gmail.com
+    host: mail.bookstorage.kr
     port: 587
-    username: rnjstjdqhd3939
-    password:
+    username: ksb@bookstorage.kr
+    password: 123456
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
-
 
 management:
   security:

@@ -6,6 +6,7 @@ import org.springframework.mail.SimpleMailMessage;
  * Created by ohjic on 2017-06-08.
  */
 public interface EmailService {
+    void test();
     void sendSimpleMessage(String to,
                            String subject,
                            String text);

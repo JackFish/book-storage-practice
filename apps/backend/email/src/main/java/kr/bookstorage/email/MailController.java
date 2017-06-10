@@ -56,8 +56,13 @@ public class MailController {
         labels.put("sendAttachment", props);
     }
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public void test() {
+        emailService.test();
+    }
+
     @RequestMapping(value = "/send", method = RequestMethod.GET)
-    public String createMail() {
+    public void createMail() {
         Map<String, String> props = labels.get("send");
 
         MailObject mailObject = new MailObject();
@@ -67,11 +72,10 @@ public class MailController {
 
         emailService.sendSimpleMessage(mailObject.getTo(),
                 mailObject.getSubject(), mailObject.getText());
-        return "test";
     }
 
     @RequestMapping(value = "/sendTemplate", method = RequestMethod.GET)
-    public String createMailWithTemplate() {
+    public void createMailWithTemplate() {
         Map<String, String> props = labels.get("sendTemplate");
 
         MailObject mailObject = new MailObject();
@@ -80,11 +84,10 @@ public class MailController {
                 mailObject.getSubject(),
                 template,
                 mailObject.getText());
-        return "test";
     }
 
     @RequestMapping(value = "/sendAttachment", method = RequestMethod.GET)
-    public String createMailWithAttachment() {
+    public void createMailWithAttachment() {
         Map<String, String> props = labels.get("sendAttachment");
 
         MailObject mailObject = new MailObject();
@@ -95,6 +98,5 @@ public class MailController {
                 mailObject.getText(),
                 attachmentPath
         );
-        return "test";
     }
 }
