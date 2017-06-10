@@ -43,4 +43,7 @@ public class User implements Serializable {
 	@OneToOne(fetch = FetchType.EAGER, mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private UserSocial userSocial;
 
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
+	private List<Device> deviceList;
+
 }
