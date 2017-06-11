@@ -9,6 +9,8 @@ target/
 .project
 .springBeans
 node_modules/
+plugins/
+platforms/
 .idea/
 *.iml
 build/

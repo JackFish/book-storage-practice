@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "150010817728",
+    "firebase_url": "https://bookstorage-169606.firebaseio.com",
+    "project_id": "bookstorage-169606",
+    "storage_bucket": "bookstorage-169606.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150010817728:android:2ad1d7fe57b9f730",
+        "android_client_info": {
+          "package_name": "kr.bookstorage.cordovaview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150010817728-tiupup6p55dkhlfrj6etb8c9h1i6oig8.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "150010817728-rgpsba3l8eu1jqersfmoihaj56jeqpia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQrC2ozhwYcGRiiZKfIFEN-k4r5wDFsE4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
