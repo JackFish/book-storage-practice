@@ -2,7 +2,7 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     generate-ddl: false
     show-sql: true
     database-platform: org.hibernate.dialect.MySQLDialect
@@ -41,6 +41,10 @@ spring:
       app-secret: qbuxIcZQs6
     google:
       app-id: 150010817728-rgpsba3l8eu1jqersfmoihaj56jeqpia.apps.googleusercontent.com
+      app-secret: suiek6bK3Ni4HfrIMWSCX9Eb
+    instagram:
+      app-id: 5d4a48d3a2524458b796c9b5fbeb4510
+      app-secret: 4a75ee60e0f0438abb27344c4362630e
 
 #  data:
 #    elasticsearch:

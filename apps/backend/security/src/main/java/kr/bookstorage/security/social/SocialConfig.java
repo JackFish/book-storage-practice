@@ -17,6 +17,7 @@ import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
 
 import javax.annotation.Resource;
@@ -43,6 +44,12 @@ public class SocialConfig implements SocialConfigurer {
     @Value("${spring.social.naver.app-secret}")
     private String naverSecret;
 
+    @Value("${spring.social.google.app-id}")
+    private String googleAppId;
+
+    @Value("${spring.social.google.app-secret}")
+    private String googleSecret;
+
     @Override
     public void addConnectionFactories(ConnectionFactoryConfigurer connectionFactoryConfigurer, Environment environment) {
         connectionFactoryConfigurer.addConnectionFactory(
@@ -54,6 +61,12 @@ public class SocialConfig implements SocialConfigurer {
                         naverSecret
                 )
         );
+        GoogleConnectionFactory gcf = new GoogleConnectionFactory(
+                googleAppId,
+                googleSecret
+        );
+        gcf.setScope("email");
+        connectionFactoryConfigurer.addConnectionFactory(gcf);
     }
 
     @Override

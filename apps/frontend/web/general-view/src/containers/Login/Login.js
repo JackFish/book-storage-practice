@@ -27,6 +27,27 @@ import LoginValidation from "./Validate/LoginValidation";
 export default class Login extends Component {
     state = {loginFail: false}
 
+    constructor(props){
+        super(props);
+        this.loginProc = this.loginProc.bind(this);
+    }
+
+    locationHref(provider){
+        // var secUrl = 'http://' + config.secHost + (config.secPort ? ':' + config.secPort : '') + '/auth/' + provider + ';public';
+        var secUrl = 'http://local.bookstorage.kr:8081/auth/' + provider + '';
+        window.LOGIN = this.loginProc;
+        window.open(secUrl);
+    }
+
+    loginProc(){
+        const { load, pushState } = this.props;
+        load().then((result) => {
+                console.log(result);
+                pushState('/');
+            }
+        ).catch((e) => alert('로그인 에러가 발생하였습니다.'));
+    }
+
     loginFail(err){
         const {resetForm} = this.props;
         this.setState({loginFail: true});
@@ -68,8 +89,35 @@ export default class Login extends Component {
                         }).catch((err) => this.loginFail(err));
                     })
                     }>로그인</Button>
+                    <Row>
+                        <Button className="btn-social btn-social-facebook" onClick={() => this.locationHref('facebook')}><i />페이스북 회원가입/로그인</Button>
+                    </Row>
+                    <Row>
+                        <Button className="btn-social btn-social-kakao" onClick={() => this.locationHref('kakao')}><i />카카오 회원가입/로그인</Button>
+                    </Row>
+                    <Row>
+                        <Button className="btn-social btn-social-naver" onClick={() => this.locationHref('naver')}><i />네이버 회원가입/로그인</Button>
+                    </Row>
+                    <Row>
+                        <Button className="btn-social btn-social-google" onClick={() => this.locationHref('google')}><i />구글 회원가입/로그인</Button>
+                    </Row>
+                    {/*<Row>
+                        <Button className="btn-social btn-social-instagram" onClick={() => this.locationHref('instagram')}><i />인스타그램 회원가입/로그인</Button>
+                    </Row>*/}
                 </form>
             </Grid>
+        )
+    }
+}
+
+export class LoginSuccess extends Component {
+    componentDidMount(){
+        window.opener.LOGIN();
+        window.open('', '_self').close();
+    }
+    render(){
+        return (
+            <div></div>
         )
     }
 }

@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -31,10 +32,17 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.security.web.session.SessionManagementFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.UserProfile;
+import org.springframework.social.connect.web.ProviderSignInUtils;
+import org.springframework.social.security.SocialAuthenticationFilter;
+import org.springframework.social.security.SpringSocialConfigurer;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
@@ -60,6 +68,9 @@ public class Application extends SpringBootServletInitializer {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private ProviderSignInUtils providerSignInUtils;
+
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     private EntityManagerFactory entityManagerFactory;
@@ -78,6 +89,14 @@ public class Application extends SpringBootServletInitializer {
     @RequestMapping("/me")
     public UserDto.Response me() {
         return modelMapper.map(CmmLoginHelper.getUser(), UserDto.Response.class);
+    }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public UserDto.Response socialSignUp(WebRequest request){
+        Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
+        UserProfile userProfile = connection.fetchUserProfile();
+
+        return null;
     }
 
     public static void main(String[] args){
@@ -122,6 +141,15 @@ public class Application extends SpringBootServletInitializer {
             statelessLoginFilter.setAuthenticationSuccessHandler(customAuthenticationSuccessHandler);
             statelessLoginFilter.setAuthenticationFailureHandler(customAuthenticationFailureHandler);
 
+            final SpringSocialConfigurer socialConfigurer = new SpringSocialConfigurer();
+            socialConfigurer.addObjectPostProcessor(new ObjectPostProcessor<SocialAuthenticationFilter>() {
+                @Override
+                public <O extends SocialAuthenticationFilter> O postProcess(O socialAuthenticationFilter) {
+                    socialAuthenticationFilter.setAuthenticationSuccessHandler(customAuthenticationSuccessHandler);
+                    return socialAuthenticationFilter;
+                }
+            });
+
             http
                 .formLogin()
                     .loginProcessingUrl("/login")
@@ -143,6 +171,8 @@ public class Application extends SpringBootServletInitializer {
                     .anyRequest().authenticated()
                 .and()
                     .csrf().csrfTokenRepository(csrfTokenRepository())
+                .and()
+                    .apply(socialConfigurer)
                 .and()
                     .addFilterBefore(statelessLoginFilter, UsernamePasswordAuthenticationFilter.class)
                     .addFilterAfter(csrfHeaderFilter(), SessionManagementFilter.class);

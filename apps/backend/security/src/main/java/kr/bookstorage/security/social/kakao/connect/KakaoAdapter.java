@@ -24,7 +24,11 @@ public class KakaoAdapter implements ApiAdapter<Kakao> {
 	
 	public UserProfile fetchUserProfile(Kakao kakao) {
 		KakaoProfile profile = kakao.userOperation().getUserProfile();
-		return new UserProfileBuilder().setName(profile.getProperties().getNickname()).setUsername(profile.getProperties().getNickname()).build();
+		return new UserProfileBuilder()
+				.setEmail(String.valueOf(profile.getExtraData().get(profile.getExtraData().keySet().stream().findFirst().get())))
+				.setName(profile.getProperties().getNickname())
+				.setUsername(profile.getProperties().getNickname())
+				.build();
 	}
 	
 	@Deprecated

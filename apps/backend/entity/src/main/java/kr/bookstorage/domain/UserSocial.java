@@ -2,6 +2,8 @@ package kr.bookstorage.domain;
 
 import kr.bookstorage.domain.code.SocialProvider;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +15,8 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name = "USER_SOCIAL")
+@EqualsAndHashCode(exclude = {"user"})
+@ToString(exclude = {"user"})
 public class UserSocial implements Serializable {
 
     @Id

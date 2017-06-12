@@ -135,8 +135,8 @@ project(':security') {
     dependencies {
         compile project(':cmm-config')
         compile 'com.h2database:h2'
-        compile("org.springframework.social:spring-social-facebook:2.0.3.RELEASE")
-        compile group: 'org.springframework.social', name: 'spring-social-google', version: '1.0.0.RELEASE'
+        compile("org.springframework.social:spring-social-facebook:3.0.0.M1")
+        compile("org.springframework.social:spring-social-google:1.0.0.RELEASE")
     }
 
     war.doLast{
