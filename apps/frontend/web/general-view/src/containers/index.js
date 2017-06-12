@@ -1,5 +1,5 @@
 export Root from './Root/Root';
-export Login from './Login/Login';
+export Login, {LoginSuccess} from './Login/Login';
 export Join from './Join/Join';
 export Profile from './Profile/Profile';
 export Home from './Home/Home';

@@ -27,19 +27,14 @@ import LoginValidation from "./Validate/LoginValidation";
 export default class Login extends Component {
     state = {loginFail: false}
 
-    constructor(props){
-        super(props);
-        this.loginProc = this.loginProc.bind(this);
-    }
-
     locationHref(provider){
-        // var secUrl = 'http://' + config.secHost + (config.secPort ? ':' + config.secPort : '') + '/auth/' + provider + ';public';
+        // var secUrl = 'http://' + config.secHost + (config.secPort ? ':' + config.secPort : '') + '/auth/' + provider;
         var secUrl = 'http://local.bookstorage.kr:8081/auth/' + provider + '';
         window.LOGIN = this.loginProc;
         window.open(secUrl);
     }
 
-    loginProc(){
+    loginProc = () => {
         const { load, pushState } = this.props;
         load().then((result) => {
                 console.log(result);

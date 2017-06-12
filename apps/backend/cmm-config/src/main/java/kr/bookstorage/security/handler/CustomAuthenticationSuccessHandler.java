@@ -49,6 +49,18 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         String url = request.getRequestURI();
         log.debug("URL: {}", url);
 
+        if(url != null && url.startsWith("/auth")){
+            String[] activeProfile = environment.getActiveProfiles();
+            log.debug("PROFILES IS PROD ? : {}", Arrays.binarySearch(activeProfile, "prod"));
+            log.debug("PROFILES IS SECURITY ? : {}", Arrays.binarySearch(activeProfile, "security"));
+            if(Arrays.binarySearch(activeProfile, "security") > -1) {
+                redirectStrategy.sendRedirect(request, response, "http://local.bookstorage.kr:3000/login-success");
+            } else if(Arrays.binarySearch(activeProfile, "prod") > -1) {
+                redirectStrategy.sendRedirect(request, response, "http://admin.bookstorage.kr/login-success");
+            }
+            return;
+        }
+
         response.setStatus(HttpServletResponse.SC_OK);
         response.setContentType("application/json");
 

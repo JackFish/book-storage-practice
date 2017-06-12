@@ -1,9 +1,10 @@
 import React from 'react';
-import {IndexRoute, Route} from 'react-router';
+import {IndexRoute, Route, Router} from 'react-router';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/reducers/auth';
 import {
 	Root,
     Login,
+    LoginSuccess,
     Join,
 	Profile,
     Home,
@@ -47,31 +48,33 @@ export default (store) => {
     store.dispatch(loadAuth());
 
 	return (
-		<Route path="/" component={Root}>
-			{ /* Home (main) route */ }
-			<IndexRoute component={Home}/>
+		<Router>
+			<Route path="/login-success" component={LoginSuccess} />
+			<Route path="/" component={Root}>
+				{ /* Home (main) route */ }
+				<IndexRoute component={Home}/>
 
-			<Route path="login" component={Login}>
-			</Route>
+				<Route path="login" component={Login} />
 
-			<Route path="join" component={Join}>
-			</Route>
+				<Route path="join" component={Join}>
+				</Route>
 
-			<Route path="profile" component={Profile}>
-			</Route>
+				<Route path="profile" component={Profile}>
+				</Route>
 
-			<Route path="bookRecord" component={BookRecord}>
-				<IndexRoute component={BookRecordList} />
-				<Route path="detail/:idx" component = {BookRecordDetail} />
+				<Route path="bookRecord" component={BookRecord}>
+					<IndexRoute component={BookRecordList} />
+					<Route path="detail/:idx" component = {BookRecordDetail} />
+				</Route>
+				<Route path="bookReport" component={BookReport}>
+					<IndexRoute component={BookReportList} />
+					<Route path="detail/:idx" component = {BookReportDetail} />
+				</Route>
+				<Route path="bookChat" component={BookChat}>
+				</Route>
+				<Route path="bookQuestion" component={BookQuestion}>
+				</Route>
 			</Route>
-			<Route path="bookReport" component={BookReport}>
-				<IndexRoute component={BookReportList} />
-				<Route path="detail/:idx" component = {BookReportDetail} />
-			</Route>
-			<Route path="bookChat" component={BookChat}>
-			</Route>
-			<Route path="bookQuestion" component={BookQuestion}>
-			</Route>
-		</Route>
+		</Router>
 	);
 };
