@@ -1,6 +1,5 @@
 package kr.bookstorage.domain.batch;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -11,7 +10,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PERSON")
 @Data
-@AllArgsConstructor
 public class Person {
 
     @Id
