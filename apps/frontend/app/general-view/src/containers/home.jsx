@@ -8,10 +8,6 @@ class Home extends Component {
         dispatch: React.PropTypes.func.isRequired
     };
 
-    componentWillMount() {
-        console.log(this.props.dispatch);
-    }
-
     render() {
         const {count, increment, incrementIfOdd, decrement} = this.props;
 
@@ -22,6 +18,9 @@ class Home extends Component {
                 <button onClick={incrementIfOdd}>incrementIfOdd</button>
                 <button onClick={decrement}>decrement</button>
                 <button onClick={() => this.props.dispatch({type:"INCREMENT_ASYNC"})}>incrementAsync</button>
+                <button onClick={() => this.props.dispatch({type:"FLOW", data:{username:"user", password:"pass"}})}>
+                    login</button>
+                <button onClick={() => this.props.dispatch({type:"TEST"})}>test</button>
             </section>
         );
     }

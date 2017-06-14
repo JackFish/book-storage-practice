@@ -2,6 +2,8 @@ package kr.bookstorage.controller;
 
 import kr.bookstorage.dto.PostDto;
 import kr.bookstorage.dto.ReplyDto;
+import kr.bookstorage.exception.ErrorStatus;
+import kr.bookstorage.exception.exceptions.ForbiddenException;
 import kr.bookstorage.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +22,22 @@ public class QuestionController {
 
     @Autowired
     private QuestionService boardServiceImpl;
+
+    @GetMapping("/test")
+    public PostDto.Summary test(@ModelAttribute("username") String username) {
+        PostDto.Summary test = new PostDto.Summary();
+        test.setSubject("TEST");
+//        throw new ForbiddenException(ErrorStatus.USER_NAME_EXIST_MESSAGE);
+        return test;
+    }
+
+    @PostMapping("/test2")
+    public PostDto.Summary test2(@RequestBody PostDto.Search search) {
+        PostDto.Summary test = new PostDto.Summary();
+        test.setSubject("TEST2");
+//        throw new ForbiddenException(ErrorStatus.USER_NAME_EXIST_MESSAGE);
+        return test;
+    }
 
     @GetMapping("/post")
     public Page<PostDto.Summary> findPostSummaryList(@PageableDefault(value = 20, sort = "idx", direction = Sort.Direction.DESC) Pageable pageable,
