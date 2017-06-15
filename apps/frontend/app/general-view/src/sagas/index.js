@@ -43,8 +43,30 @@ function* test() {
     }
 }
 
+function* login() {
+    let request = yield take("LOGIN");
+
+    try {
+        const auth = yield call(client.get, '/auth');
+        const test = yield call(client.post, '/auth/test');
+        console.log(test);
+        /*const auth = yield call(client.get, '/auth');
+         const user = yield call(client.post, '/auth/login', {
+         data: request,
+         token: auth.token,
+         authorization: 'Basic ' + btoa(request.email + ':' + request.password)
+         });
+         console.log(user);*/
+        //     yield put(success(payload));
+    } catch (error) {
+        console.log(error);
+        //     yield put(failure(error));
+    }
+}
+
 export default function* rootSaga() {
     yield fork(flow);
     yield fork(incrementAsync);
     yield fork(test);
+    yield fork(login);
 }
