@@ -18,6 +18,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
@@ -151,6 +152,7 @@ public class Application extends SpringBootServletInitializer {
             });
 
             http
+                .csrf().disable()
                 .formLogin()
                     .loginProcessingUrl("/login")
                     .usernameParameter("email")
@@ -167,6 +169,7 @@ public class Application extends SpringBootServletInitializer {
                     .logoutSuccessHandler(customLogoutSuccessHandler)
                 .and()
                     .authorizeRequests()
+//                    .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                     .antMatchers("/login", "/", "/auth", "/auth/me", "/connect/**", "/auth/connect/**", "/auth/**", "/signup", "/auth/signup").permitAll()
                     .anyRequest().authenticated()
                 .and()

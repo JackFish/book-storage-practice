@@ -1,79 +1,54 @@
-import superagent from 'superagent';
+import superagent from 'superagent/lib/client';
 // import config from '../config';
+const config = {apiHost:"http://localhost:8080",apiPort:"8080",secHost:"http://localhost:8081",secPort:"8081"};
 
-const config = {apiHost:"local.bookstorage.kr",apiPort:"8080",secHost:"local.bookstorage.kr",secPort:"8081"};
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
 function formatUrl(path) {
 	const adjustedPath = path[0] !== '/' ? '/' + path : path;
 
 	if(path.startsWith('/auth')){
-		return 'http://' + config.secHost + ':' + config.secPort + adjustedPath.replace('/auth', '');
+		return config.secHost + adjustedPath.replace('/auth', '');
 	}
-	return 'http://' + config.apiHost + ':' + config.apiPort + adjustedPath;
+
+	return config.apiHost + adjustedPath;
 }
 
 export default class ApiClient {
 	constructor(req) {
 		methods.forEach((method) =>
-			this[method] = (path, {params, data, token, authorization, attach} = {}) => new Promise((resolve, reject) => {
+			this[method] = (path, {params, data} = {}) => new Promise((resolve, reject) => {
+				const startedAt = new Date().getTime();
 				const request = superagent[method](formatUrl(path));
 
 				if (params) {
 					request.query(params);
 				}
 
-				if (__SERVER__ && req.get('cookie')) {
-					request.set('cookie', req.get('cookie'));
+				if (this.constructor.xAuthToken) {
+					request.set('X-AUTH-TOKEN', this.constructor.xAuthToken);
 				}
 
-                if (token) {
-                    request.set('X-XSRF-TOKEN', token);
-                }
+				if (data) {
+					request.send(data);
+				}
 
-                if (authorization) {
-                    request.set('authorization', authorization);
-                }
-
-                if (attach) {
-					let formData = new FormData();
-					if(data) {
-						formData.append("data", new Blob([JSON.stringify(data)], {type : 'application/json'}));
-					}
-
-					for (var key in attach) {
-						// is the item a File?
-						if (attach.hasOwnProperty(key) && attach[key] instanceof File) {
-							formData.append('file', attach[key]);
+				request.end((err, {body} = {}) =>
+					{
+						if(__DEV__){
+							const end = new Date().getTime();
+							const duration = end - startedAt;
 						}
+
+						if(err){
+							return reject(body || err);
+						}
+						return resolve(body);
 					}
-
-					request.send(formData);
-
-				} else {
-					if (data) {
-						request.send(data);
-					}
-				}
-
-				/*if (data) {
-					request.send('data', data);
-				}*/
-
-				request.end((err, {body} = {}) => err ? reject(body || err) : resolve(body));
+				);
 			}));
 	}
-
-	/*
-	 * There's a V8 bug where, when using Babel, exporting classes with only
-	 * constructors sometimes fails. Until it's patched, this is a solution to
-	 * "ApiClient is not defined" from issue #14.
-	 * https://github.com/erikras/react-redux-universal-hot-example/issues/14
-	 *
-	 * Relevant Babel bug (but they claim it's V8): https://phabricator.babeljs.io/T2455
-	 *
-	 * Remove it at your own risk.
-	 */
-	empty() {
+	setXAuthToken(xAuthToken) {
+		this.constructor.xAuthToken = xAuthToken;
 	}
 }

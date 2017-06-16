@@ -13,13 +13,13 @@ class Home extends Component {
 
         return (
             <section>
+                <button onClick={() => this.props.dispatch({type:"LOGIN", data:{email:"admin@bookstorage.co.kr", password:"admin"}})}>LOGIN</button>
                 test ({count})
                 <button onClick={increment}>increment</button>
                 <button onClick={incrementIfOdd}>incrementIfOdd</button>
                 <button onClick={decrement}>decrement</button>
                 <button onClick={() => this.props.dispatch({type:"INCREMENT_ASYNC"})}>incrementAsync</button>
-                <button onClick={() => this.props.dispatch({type:"FLOW", data:{username:"user", password:"pass"}})}>
-                    login</button>
+                <button onClick={() => this.props.dispatch({type:"FLOW", data:{username:"user", password:"pass"}})}>FLOW</button>
                 <button onClick={() => this.props.dispatch({type:"TEST"})}>test</button>
             </section>
         );

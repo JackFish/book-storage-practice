@@ -38,8 +38,8 @@ public class DefaultConfig {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		org.springframework.web.cors.CorsConfiguration config = new org.springframework.web.cors.CorsConfiguration();
 		config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://local.bookstorage.kr:3000");
-//		config.addAllowedOrigin("*");
+//        config.addAllowedOrigin("http://local.bookstorage.kr:3000");
+		config.addAllowedOrigin("*");
 		config.addAllowedHeader("*");
 		config.addAllowedMethod("*");
 		source.registerCorsConfiguration("/**", config);

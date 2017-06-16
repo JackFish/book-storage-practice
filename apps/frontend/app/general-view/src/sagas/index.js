@@ -47,16 +47,16 @@ function* login() {
     let request = yield take("LOGIN");
 
     try {
-        const auth = yield call(client.get, '/auth');
-        const test = yield call(client.post, '/auth/test');
-        console.log(test);
         /*const auth = yield call(client.get, '/auth');
+        const test = yield call(client.post, '/auth/test');
+        console.log(test);*/
+        const auth = yield call(client.get, '/auth');
          const user = yield call(client.post, '/auth/login', {
          data: request,
          token: auth.token,
          authorization: 'Basic ' + btoa(request.email + ':' + request.password)
          });
-         console.log(user);*/
+        console.log(user);
         //     yield put(success(payload));
     } catch (error) {
         console.log(error);
