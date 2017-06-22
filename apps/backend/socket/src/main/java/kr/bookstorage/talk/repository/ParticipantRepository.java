@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 /**
  * Created by ksb on 2017. 6. 4..
  */
-public interface ParticipantRepository  extends JpaRepository<Participant, Long>, JpaSpecificationExecutor {
+public interface ParticipantRepository extends JpaRepository<Participant, Long>, JpaSpecificationExecutor {
 }

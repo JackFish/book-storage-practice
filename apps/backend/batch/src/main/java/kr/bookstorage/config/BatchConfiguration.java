@@ -41,9 +41,6 @@ public class BatchConfiguration {
     @Autowired
     public DataSource dataSource;
 
-    @Autowired
-    private EntityManagerFactory entityManagerFactory;
-
     // tag::readerwriterprocessor[]
     @Bean
     public FlatFileItemReader<Person> reader() {

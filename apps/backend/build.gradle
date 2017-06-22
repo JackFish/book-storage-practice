@@ -156,6 +156,7 @@ project(':email') {
     dependencies {
         compile project(':cmm-config'), project(':cmm-logic')
         compile 'com.h2database:h2:1.4.192'
+        compile("org.springframework.boot:spring-boot-starter-batch:${springBootVersion}")
         compile("org.springframework.boot:spring-boot-starter-mail:${springBootVersion}")
         compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
     }
@@ -177,6 +178,7 @@ project(':push') {
     dependencies {
         compile project(':cmm-config'), project(':cmm-logic')
         compile 'com.h2database:h2:1.4.192'
+        compile("org.springframework.boot:spring-boot-starter-batch:${springBootVersion}")
         compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
         compile group: 'commons-io', name: 'commons-io', version: '2.5'
         compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
