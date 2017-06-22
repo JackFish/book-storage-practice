@@ -18,6 +18,10 @@ import java.io.Serializable;
 public class PushResult implements Serializable {
 
     @Id
+    @Column(unique = true, nullable = false)
+    private Long idx;
+
+    @MapsId
     @OneToOne
     @JoinColumn(name = "IDX")
     private PushQueue pushQueue;

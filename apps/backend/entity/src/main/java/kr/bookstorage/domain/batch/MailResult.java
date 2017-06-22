@@ -18,6 +18,10 @@ import java.io.Serializable;
 public class MailResult implements Serializable {
 
     @Id
+    @Column(unique = true, nullable = false)
+    private Long idx;
+
+    @MapsId
     @OneToOne
     @JoinColumn(name = "IDX")
     private MailQueue mailQueue;
