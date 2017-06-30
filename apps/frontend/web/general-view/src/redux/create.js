@@ -1,12 +1,15 @@
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import createMiddleware from './middleware/clientMiddleware';
 import { routerMiddleware } from 'react-router-redux';
+import createSagaMiddleware, { END } from 'redux-saga'
 
 export default function createStore(history, client, data) {
+  const sagaMiddleware = createSagaMiddleware();
+
   // Sync dispatched route actions to the history
   const reduxRouterMiddleware = routerMiddleware(history);
 
-  const middleware = [createMiddleware(client), reduxRouterMiddleware];
+  const middleware = [createMiddleware(client), reduxRouterMiddleware, sagaMiddleware];
 
   let finalCreateStore;
   if (__DEVELOPMENT__ && __CLIENT__ && __DEVTOOLS__) {
@@ -30,6 +33,9 @@ export default function createStore(history, client, data) {
       store.replaceReducer(require('./reducers'));
     });
   }
+
+  store.runSaga = sagaMiddleware.run
+  store.close = () => store.dispatch(END)
 
   return store;
 }
